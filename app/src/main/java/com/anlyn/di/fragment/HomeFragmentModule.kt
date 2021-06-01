@@ -6,6 +6,7 @@ import com.anlyn.domain.Repository
 import com.anlyn.domain.common.Transformer
 import com.anlyn.domain.entitiy.MovieEntity
 import com.anlyn.domain.usecase.GetMovieUseCase
+import com.anlyn.domain.usecase.GetSeriesUseCase
 import com.anlyn.presentation.common.ASyncTransformer
 import com.anlyn.presentation.common.ViewModelFactory
 import com.anlyn.presentation.home.HomeViewModel
@@ -22,5 +23,12 @@ class HomeFragmentModule {
     }
 
     @Provides
-    fun provideHomeViewModel(getMovieUseCase: GetMovieUseCase): HomeViewModel = HomeViewModel(getMovieUseCase)
+    fun providesGetSeriesUseCase(repository: RemoteRepository):GetSeriesUseCase{
+        return GetSeriesUseCase(ASyncTransformer(),repository)
+    }
+
+    @Provides
+    fun provideHomeViewModel(getMovieUseCase: GetMovieUseCase,
+                             getSeriesUseCase: GetSeriesUseCase): HomeViewModel
+    = HomeViewModel(getMovieUseCase,getSeriesUseCase)
 }

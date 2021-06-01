@@ -1,9 +1,11 @@
 package com.anlyn.di.data
 
 import com.anlyn.data.Mapper.DataEntityMapper
+import com.anlyn.data.Mapper.SeriesDataEntityMapper
 import com.anlyn.data.RemoteDataSource
 import com.anlyn.data.remote.RemoteRepository
 import com.anlyn.data.remote.api.TDMBApi
+import com.anlyn.domain.Mapper
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -34,12 +36,16 @@ class DataModule {
         RemoteRepository(dataSource)
 
     @Provides
-    fun provideRemoteDataSource(tdmbApi: TDMBApi, mapper: DataEntityMapper):RemoteDataSource{
-        return RemoteDataSource(tdmpApi = tdmbApi, mapper = mapper)
+    fun provideRemoteDataSource(tdmbApi: TDMBApi, movieMapper: DataEntityMapper,
+                                seriesMapper:SeriesDataEntityMapper):RemoteDataSource{
+        return RemoteDataSource(tdmpApi = tdmbApi, mapper = movieMapper,seriesMapper =seriesMapper )
     }
 
     @Provides
     fun provideDataEntityMapper():DataEntityMapper = DataEntityMapper()
+
+    @Provides
+    fun provideSeriesDataEntityMapper():SeriesDataEntityMapper = SeriesDataEntityMapper()
 
 
 }

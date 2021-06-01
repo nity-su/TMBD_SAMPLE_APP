@@ -1,9 +1,7 @@
-package com.anlyn.presentation.home
+package com.anlyn.presentation.home.adapter
 
-import android.app.Activity
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,14 +12,17 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.anlyn.domain.entitiy.MovieEntity
 import com.anlyn.netflixmovie.R
-import com.anlyn.netflixmovie.databinding.HomeFragmentBinding
+import com.anlyn.presentation.home.HomeFragment
+import com.anlyn.presentation.home.listener.OnHomeFragListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class MovieRelcAdapter() : RecyclerView.Adapter<MovieRelcAdapter.ViewHolder>(){
+class MovieRelcAdapter(val listener: OnHomeFragListener) : RecyclerView.Adapter<MovieRelcAdapter.ViewHolder>(){
+    private val MovieType:Int = 1;
+    private val NextButton:Int = 2;
 
     private var list:List<MovieEntity> = emptyList()
 
@@ -31,30 +32,53 @@ class MovieRelcAdapter() : RecyclerView.Adapter<MovieRelcAdapter.ViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        var binding : ViewDataBinding
         val inflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,
-            R.layout.home_frag_movie_cell,parent,false)
+        if(viewType == MovieType) {
+            binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,
+                    R.layout.home_frag_video_cell, parent, false)
+            return ViewHolder(binding);
+        }
 
-        return ViewHolder(binding)
+        binding = DataBindingUtil.inflate<ViewDataBinding>(inflater,
+            R.layout.home_relc_next_button,parent,false)
+        return ViewHolder(binding);
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if(position<6)
         holder.bind(list.get(position))
+        if(position==6)
+            holder.nextBtnBind(listener)
     }
 
     override fun getItemCount(): Int{
         if(list.isNotEmpty()){
-            return 6
+            return 7
         }else{
             return 0
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if(position<6)
+            return 1
+        else
+            return 2
     }
 
     class ViewHolder(val binding:ViewDataBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(movie:Any){
             binding.setVariable(BR.movie,movie)
         }
+
+        fun nextBtnBind(listener: OnHomeFragListener){
+            binding.setVariable(BR.listener,listener)
+        }
     }
+
+
     companion object {
         @BindingAdapter("movieImage")
         @JvmStatic

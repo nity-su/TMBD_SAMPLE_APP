@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NetflixMovie">
-        <activity android:name="com.anlyn.presentation.home.MainActivity">
+        <activity android:name="com.anlyn.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

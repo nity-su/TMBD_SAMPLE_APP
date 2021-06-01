@@ -1,6 +1,7 @@
 package com.anlyn.data.remote.api
 
 import com.anlyn.data.model.MovieListData
+import com.anlyn.data.model.SeriesListData
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,5 +21,9 @@ interface TDMBApi{
     @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") key:String,
                          @Query("language") language:String, @Query("page") page:Int) : Observable<MovieListData>
+
+    @GET("tv/popular")
+    fun getPopularSeries(@Query("api_key") key:String,
+                         @Query("language") language:String, @Query("page") page:Int) : Observable<SeriesListData>
 }
 

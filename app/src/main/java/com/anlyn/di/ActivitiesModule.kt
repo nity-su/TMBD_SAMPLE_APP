@@ -1,6 +1,6 @@
 package com.anlyn.di
 
-import com.anlyn.presentation.home.MainActivity
+import com.anlyn.presentation.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import javax.inject.Scope
