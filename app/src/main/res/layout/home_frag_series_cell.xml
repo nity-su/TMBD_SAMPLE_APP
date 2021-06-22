@@ -12,7 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:foreground="@drawable/card_edge"
+        app:cardCornerRadius="23dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="wrap_content"

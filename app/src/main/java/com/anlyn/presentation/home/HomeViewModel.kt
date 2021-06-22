@@ -6,9 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.anlyn.domain.usecase.GetMovieUseCase
 import com.anlyn.domain.usecase.GetSeriesUseCase
+import java.io.IOException
+import java.net.SocketTimeoutException
+import javax.inject.Inject
 
-class HomeViewModel(private val getMovieUseCase: GetMovieUseCase,private val getSeriesUseCase: GetSeriesUseCase) : ViewModel() {
-
+class HomeViewModel @Inject constructor(private val getMovieUseCase: GetMovieUseCase, private val getSeriesUseCase: GetSeriesUseCase) : ViewModel() {
+// @Inject constructor()
       private var _movieState=MutableLiveData<MovieViewState>()
       var movieState:LiveData<MovieViewState> = _movieState
 
@@ -26,7 +29,16 @@ class HomeViewModel(private val getMovieUseCase: GetMovieUseCase,private val get
                 //예외처리
                 _movieState.value = movieState.value!!.copy(false,it)
                 Log.d(this::class.simpleName,"success")
-            },{ Log.d(this::class.simpleName,it.message.toString())})
+            },{
+                if(it is SocketTimeoutException){
+                    Log.d(this::class.simpleName,"TimeOut")
+                }else if (it is IOException){
+                    Log.d(this::class.simpleName,"IOException")
+                }
+                Log.d(this::class.simpleName,it.message.toString())
+            },{
+
+            })
         }
         fun getSeries(){
             getSeriesUseCase.execute("ko",1).subscribe({

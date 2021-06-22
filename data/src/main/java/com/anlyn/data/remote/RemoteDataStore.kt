@@ -1,5 +1,6 @@
 package com.anlyn.data
 
+import android.util.Log
 import com.anlyn.data.Mapper.DataEntityMapper
 import com.anlyn.data.Mapper.SeriesDataEntityMapper
 import com.anlyn.data.model.MovieListData
@@ -17,6 +18,7 @@ class RemoteDataSource(private val tdmpApi:TDMBApi,private val mapper: DataEntit
     override fun getMovies(language:String,page:Int): Observable<List<MovieEntity>> {
         return tdmpApi.getPopularMovies(TDMB_API_KEY,language,page)
             .flatMap { data ->
+                Log.d(this::class.simpleName, System.currentTimeMillis().toString())
                 val list = ArrayList<MovieEntity>()
                 data.list.forEach {
                     list.add(mapper.mapFrom(it))

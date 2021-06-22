@@ -1,4 +1,4 @@
 include ':domain'
 include ':data'
 include ':app'
-rootProject.name = "NetflixMovie"
+rootProject.name = "user_rating"

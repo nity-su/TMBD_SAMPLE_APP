@@ -11,7 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.anlyn.domain.entitiy.SeriesEntity
-import com.anlyn.netflixmovie.R
+import com.anlyn.user_rating.R
 import com.anlyn.presentation.home.HomeFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource

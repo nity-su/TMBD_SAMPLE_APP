@@ -27,8 +27,8 @@ class HomeFragmentModule {
         return GetSeriesUseCase(ASyncTransformer(),repository)
     }
 
-    @Provides
-    fun provideHomeViewModel(getMovieUseCase: GetMovieUseCase,
-                             getSeriesUseCase: GetSeriesUseCase): HomeViewModel
-    = HomeViewModel(getMovieUseCase,getSeriesUseCase)
+//    @Provides
+//    fun provideHomeViewModel(getMovieUseCase: GetMovieUseCase,
+//                             getSeriesUseCase: GetSeriesUseCase): HomeViewModel
+//    = HomeViewModel(getMovieUseCase,getSeriesUseCase)
 }

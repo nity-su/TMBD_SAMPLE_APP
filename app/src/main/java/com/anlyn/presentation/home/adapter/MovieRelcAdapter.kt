@@ -11,7 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.anlyn.domain.entitiy.MovieEntity
-import com.anlyn.netflixmovie.R
+import com.anlyn.user_rating.R
 import com.anlyn.presentation.home.HomeFragment
 import com.anlyn.presentation.home.listener.OnHomeFragListener
 import com.bumptech.glide.Glide
@@ -79,31 +79,31 @@ class MovieRelcAdapter(val listener: OnHomeFragListener) : RecyclerView.Adapter<
     }
 
 
-    companion object {
-        @BindingAdapter("movieImage")
-        @JvmStatic
-        fun bindCurrency(view: ImageView, imageUrl: String) {
-            val fragment = view.context.let {
-                (it as AppCompatActivity).supportFragmentManager.findFragmentByTag(HomeFragment.tag())
-            }
-            var destURl = StringBuilder().append("https://image.tmdb.org/t/p/w92").append(imageUrl)
-
-            if(fragment!=null && !imageUrl.isNullOrEmpty())
-            Glide.with(fragment)
-                    .load(destURl.toString())
-                    .listener(object : RequestListener<Drawable>{
-                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                            TODO("Not yet implemented")
-                        }
-
-                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-
-                            return false
-                        }
-                    })
-                    .into(view)
-        }
-    }
+//    companion object {
+//        @BindingAdapter("movieImage")
+//        @JvmStatic
+//        fun bindCurrency(view: ImageView, imageUrl: String) {
+//            val fragment = view.context.let {
+//                (it as AppCompatActivity).supportFragmentManager.findFragmentByTag(HomeFragment.tag())
+//            }
+//            var destURl = StringBuilder().append("https://image.tmdb.org/t/p/w92").append(imageUrl)
+//
+//            if(fragment!=null && !imageUrl.isNullOrEmpty())
+//            Glide.with(fragment)
+//                    .load(destURl.toString())
+//                    .listener(object : RequestListener<Drawable>{
+//                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+//                            TODO("Not yet implemented")
+//                        }
+//
+//                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//
+//                            return false
+//                        }
+//                    })
+//                    .into(view)
+//        }
+//    }
 
 }
 

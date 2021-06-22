@@ -26,10 +26,11 @@ class ViewModelModule{
         return HomeViewModel(getMovieUseCase,getSeriesUseCase)
     }
 
-//    @Provides
-//    @IntoMap
-//    @ViewModelKey(MovieListViewModel::class)
-//    fun providesMovieListViewModel(getMovieUseCase: GetMovieUseCase):MovieListViewModel{
-//        return MovieListViewModel(getMovieUseCase)
-//    }
+    @Provides
+    @IntoMap
+    @ViewModelKey(MovieListViewModel::class)
+    fun provideMovieListVM(getMovieUseCase: GetMovieUseCase):ViewModel{
+        return MovieListViewModel(getMovieUseCase)
+    }
+
 }
