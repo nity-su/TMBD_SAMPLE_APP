@@ -13,8 +13,7 @@ import io.reactivex.rxjava3.core.Observable
 class RemoteDataSource(private val tdmpApi:TDMBApi,private val mapper: DataEntityMapper,
                        private val seriesMapper: SeriesDataEntityMapper) : MovieDataSource {
     private val TDMB_API_KEY = TDMBApi.api_key
-    private val MOVIE = "movie"
-    private val TV = "tv"
+
     override fun getMovies(language:String,page:Int): Observable<List<MovieEntity>> {
         return tdmpApi.getPopularMovies(TDMB_API_KEY,language,page)
             .flatMap { data ->

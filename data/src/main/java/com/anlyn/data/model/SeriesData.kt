@@ -7,5 +7,5 @@ data class SeriesData(
         @SerializedName("name")
         val name:String,
         @SerializedName("poster_path")
-        val url:String,
+        val url:String="",
         val rating:Int =0)

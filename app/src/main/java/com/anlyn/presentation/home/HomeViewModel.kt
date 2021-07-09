@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(private val getMovieUseCase: GetMovieUse
                 _seriesState.value = seriesState.value!!.copy(isLoading = false,it)
                 Log.d(this::class.simpleName,"success")
             },{
-                Log.d(this::class.simpleName,it.message.toString())
+                Log.e(this::class.simpleName,it.message.toString())
             })
         }
 
