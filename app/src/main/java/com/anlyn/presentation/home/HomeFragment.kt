@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anlyn.presentation.common.ViewModelFactory
 import com.anlyn.user_rating.R
 import com.anlyn.user_rating.databinding.HomeFragmentBinding
 import com.anlyn.presentation.home.adapter.MovieRelcAdapter
@@ -19,8 +21,10 @@ import javax.inject.Inject
 
 class HomeFragment : Fragment(), OnHomeFragListener {
 
+
+    private lateinit var viewModel: HomeViewModel
     @Inject
-    lateinit var viewModel: HomeViewModel
+    lateinit var viewModelFactory:ViewModelProvider.Factory
 
     private lateinit var binding: HomeFragmentBinding
 
@@ -48,9 +52,9 @@ class HomeFragment : Fragment(), OnHomeFragListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(HomeViewModel::class.java)
         initHomeMovieRelc()
         initSeriesRelc()
-        // TODO: Use the ViewModel
     }
     fun initHomeMovieRelc(){
         val recyclerView = binding.homeMovieRelc
@@ -68,9 +72,9 @@ class HomeFragment : Fragment(), OnHomeFragListener {
     fun initSeriesRelc(){
         val adapter = SeriesRelcAdapter()
 
-        binding.homeSeriesRelc.also { view ->
-            view.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-            view.adapter = adapter
+        binding.homeSeriesRelc.also { relc ->
+            relc.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            relc.adapter = adapter
         }
 
         viewModel.seriesState.observe(viewLifecycleOwner,{

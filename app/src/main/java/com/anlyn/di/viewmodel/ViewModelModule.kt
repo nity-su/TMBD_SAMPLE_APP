@@ -11,11 +11,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import javax.inject.Provider
+import kotlin.reflect.KClass
 
 @Module
 class ViewModelModule{
     @Provides
-    fun provideViewModelFactory(providerMap: Map<Class<out ViewModel>, Provider<ViewModel>>):ViewModelProvider.Factory{
+    fun provideViewModelFactory(providerMap: Map<Class<out ViewModel>,@JvmSuppressWildcards Provider<ViewModel>>):ViewModelProvider.Factory{
         return ViewModelFactory(providerMap)
     }
     //Dagger에서 ViewModelFactory로 확실하게 적어줄것

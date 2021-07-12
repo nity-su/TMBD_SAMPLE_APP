@@ -55,7 +55,7 @@ class MovieRelcAdapter : RecyclerView.Adapter<MovieRelcAdapter.BaseViewHolder>()
                 val manger = recyclerView.layoutManager as LinearLayoutManager
                 if(movieState!=null && !movieState!!.isLoading) {
                     if (manger != null &&
-                        manger.findLastCompletelyVisibleItemPosition() ==  (itemCount*9-1)
+                        manger.findLastCompletelyVisibleItemPosition() ==  (itemCount*LIMIT_SIZE-1)
                     ) {
                         state = checkState()
                         when(state){
@@ -118,7 +118,6 @@ class MovieRelcAdapter : RecyclerView.Adapter<MovieRelcAdapter.BaseViewHolder>()
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
            list.get(position)?.let { holder.bind(it) }
-
     }
 
     override fun getItemCount(): Int {
@@ -142,8 +141,8 @@ class MovieRelcAdapter : RecyclerView.Adapter<MovieRelcAdapter.BaseViewHolder>()
     }
 
     override fun getItemViewType(position: Int): Int {
-       return list?.get(position).let {
-           if(it!=null){
+       return list?.get(position).let { entity->
+           if(entity!=null){
                ITEM_TYPE
            }else{
                PROGRESS_TYPE
@@ -155,7 +154,6 @@ class MovieRelcAdapter : RecyclerView.Adapter<MovieRelcAdapter.BaseViewHolder>()
         override fun bind(any:Any){
             view.setVariable(BR.movieInfo,any)
         }
-
     }
     class ProcessViewHolder(val view:ViewDataBinding) : BaseViewHolder(view.root){
        override fun bind(any:Any){}

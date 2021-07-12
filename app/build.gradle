@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
-
+import Version
 android {
     compileSdkVersion 29
     buildToolsVersion '29.0.2'
@@ -44,31 +44,33 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation AndroidxDependencies.core_ktx
+    implementation AndroidxDependencies.appcompat
+    implementation MaterialDependencies.material
+    implementation AndroidxDependencies.constraintLayout
+    implementation AndroidxDependencies.legacy_support_v4
+    implementation AndroidxDependencies.livedata_ktx
+    implementation AndroidxDependencies.viewmodel
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-
+  
     ext.dagger_version = "2.32"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version" // if you use the support libraries
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation("com.github.bumptech.glide:glide:4.11.0")
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation (DaggerDependencies.dagger_android)
+    implementation DaggerDependencies.dagger_android_support
+    kapt DaggerDependencies.android_processor
+    kapt DaggerDependencies.dagger_compiler
+    implementation GlideDependencies.glide
+    kapt GlideDependencies.glide_compiler
 
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation('com.squareup.retrofit2:retrofit:2.3.0')
-    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+//    implementation(RxDependencies.im)
+//    implementation RxDependencies.rxjava3
+//    implementation RxDependencies.rxandroid
+    implementation RetrofitDependencies.retrofit
+    implementation RetrofitDependencies.retrofit2_adapter_jxjava3
+    implementation RetrofitDependencies.retrofit2_conveter_jxjava3
 
 
 

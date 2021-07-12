@@ -8,11 +8,11 @@ import javax.inject.Scope
 
 @Module
 abstract class ActivitiesModule {
-    @ActivityScope
+
     @ContributesAndroidInjector
     abstract fun contributeActivitiesModule(): MainActivity
 }
 
-@Scope
-@MustBeDocumented
-annotation class ActivityScope
+//@Scope
+//@MustBeDocumented
+//annotation class ActivityScope
